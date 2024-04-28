@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const AddTouristsSpot = () => {
+
+    const { user } = useContext(AuthContext);
+
 
     const handleAddTouristsSpot = event => {
         event.preventDefault();
         const form = event.target;
-        const user_email = form.user_email.value;
-        const user_name = form.user_name.value;
+        const user_email = user?.email;
+        const user_name = user?.displayName;
         const tourists_spot_name = form.tourists_spot_name.value;
         const country_Name = form.country_Name.value;
         const total_visitors_per_year = form.total_visitors_per_year.value;
@@ -70,7 +75,7 @@ const AddTouristsSpot = () => {
                                         <span className="label-text font-bold">User Email
                                         </span>
                                     </div>
-                                    <input type="email" name="user_email" placeholder="Enter Your Email" className="input input-bordered w-full" required />
+                                    <input type="email" name="user_email" placeholder={user?.email} className="input input-bordered w-full" required  disabled/>
                                 </label>
                             </div>
                             <div className="w-full">
@@ -78,7 +83,7 @@ const AddTouristsSpot = () => {
                                     <div className="label">
                                         <span className="label-text font-bold">User Name</span>
                                     </div>
-                                    <input type="text" name="user_name" placeholder="Enter Your Name" className="input input-bordered w-full" required />
+                                    <input type="text" name="user_name" placeholder={user?.displayName} className="input input-bordered w-full" required  disabled/>
                                 </label>
                             </div>
                         </div>
@@ -133,7 +138,7 @@ const AddTouristsSpot = () => {
                                     <div className="label">
                                         <span className="label-text font-bold">Average Cost</span>
                                     </div>
-                                    <input type="text" name="average_cost" placeholder="Enter Average Cost" className="input input-bordered w-full " required />
+                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" className="input input-bordered w-full " required />
                                 </label>
                             </div>
                         </div>

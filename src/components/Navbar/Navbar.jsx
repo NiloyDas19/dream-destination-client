@@ -37,7 +37,6 @@ const Navbar = () => {
     </>
     return (
         // style={{ backgroundImage: `url(${navBackground})` }}
-        // 
         <div className="navbar flex-no-wrap bg-white top-0 z-10 fixed ">
             <div className="navbar-start">
                 <div className="dropdown">

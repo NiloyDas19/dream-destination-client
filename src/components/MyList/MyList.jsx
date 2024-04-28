@@ -51,8 +51,8 @@ const MyList = () => {
 
 
     return (
-        <div className="mt-20 w-[95%] mx-auto min-h-screen">
-            <table className="table table-xs">
+        <div className="mt-20 w-[95%] mx-auto min-h-screen overflow-x-auto">
+            <table className="table table-auto">
                 <thead>
                     <tr className="text-center">
                         <th></th>

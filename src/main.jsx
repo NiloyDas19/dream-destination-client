@@ -17,6 +17,7 @@ import MyList from './components/MyList/MyList';
 import ViewDetailsPage from './components/ViewDetailsPage/ViewDetailsPage';
 import UpdatePage from './components/UpdatePage/UpdatePage';
 import AuthProviders from './providers/AuthProviders';
+import ViewPageForSpecficCountry from './components/ViewPageForSpecficCountry/ViewPageForSpecficCountry';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/addTouristsSpot')
       },
       {
         path: "/login",
@@ -59,6 +61,11 @@ const router = createBrowserRouter([
         path: "/update-page/:id",
         element: <PrivateRoutes><UpdatePage></UpdatePage></PrivateRoutes>,
         loader: ({params}) => fetch(`http://localhost:5000/viewDetails/${params.id}`)
+      },
+      {
+        path: "/specific-country/:country_Name",
+        element: <ViewPageForSpecficCountry></ViewPageForSpecficCountry>,
+        loader: ({params}) => fetch(`http://localhost:5000/viewDetailsForSpecificCountry/${params.country_Name}`)
       }
     ]
   },

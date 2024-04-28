@@ -82,7 +82,7 @@ const Login = () => {
                     title: "Login Successful!",
                     showConfirmButton: false,
                 });
-                navigate(location?.state ? location.state : "/");
+                navigate(location?.state  ? location.state : "/");
             })
             .catch((error) => {
                 swal({

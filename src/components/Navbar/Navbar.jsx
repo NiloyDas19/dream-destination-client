@@ -33,8 +33,9 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/all-tourists-spot">All Tourists Spot</NavLink></li>
         <li><NavLink to="/add-tourists-spot">Add Tourists Spot</NavLink></li>
-        <li><NavLink to="/my-list">My List</NavLink></li>
+        <li><NavLink to={`/my-list/${user?.email}`}>My List</NavLink></li>
     </>
+
     return (
         // style={{ backgroundImage: `url(${navBackground})` }}
         <div className="navbar flex-no-wrap bg-white top-0 z-10 fixed ">

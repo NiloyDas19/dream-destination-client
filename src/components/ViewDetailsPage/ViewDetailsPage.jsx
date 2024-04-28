@@ -14,7 +14,8 @@ const ViewDetailsPage = () => {
         average_cost,
         location,
         short_description,
-        user_name
+        user_name,
+        country_Name
 
     } = spot;
 
@@ -40,6 +41,7 @@ const ViewDetailsPage = () => {
                     </div>
                     <div className='flex justify-between'>
                         <p>Location: {location}</p>
+                        <p>Country Name: {country_Name}</p>
                         <p>Posted By : {user_name}</p>
                     </div>
                 </div>

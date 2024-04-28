@@ -56,8 +56,9 @@ const router = createBrowserRouter([
         loader: ({params}) => fetch(`http://localhost:5000/viewDetails/${params.id}`)
       },
       {
-        path: "/update-page",
-        element: <PrivateRoutes><UpdatePage></UpdatePage></PrivateRoutes>
+        path: "/update-page/:id",
+        element: <PrivateRoutes><UpdatePage></UpdatePage></PrivateRoutes>,
+        loader: ({params}) => fetch(`http://localhost:5000/viewDetails/${params.id}`)
       }
     ]
   },

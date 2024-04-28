@@ -26,7 +26,7 @@ const AllTouristsSpot = () => {
     }
 
     return (
-        <div className="mt-20 space-y-10">
+        <div className="mt-20 space-y-10 mx-auto w-[95%]">
             <form className="text-center" onChange={handleSort}>
                 <select className="select select-primary w-full max-w-xs">
                     <option disabled selected>Sort By Average Cost</option>

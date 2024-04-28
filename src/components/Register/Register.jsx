@@ -127,7 +127,7 @@ const Register = () => {
 
 
     return (
-        <div className="hero min-h-screen mx-auto" data-aos = "zoom-in-down">
+        <div className="hero min-h-screen mx-auto mt-10">
             <div className="card w-full md:w-1/2 max-w-sm md:max-w-xl shadow-2xl bg-base-100 p-10">
                 <div className="text-center mt-5">
                     <h2 className="text-2xl md:text-4xl text-blue-500 font-bold">Register Here</h2>

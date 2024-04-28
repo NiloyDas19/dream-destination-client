@@ -37,8 +37,8 @@ const Navbar = () => {
     </>
     return (
         // style={{ backgroundImage: `url(${navBackground})` }}
-        // fixed top-0 z-10
-        <div className="navbar flex-no-wrap bg-white">
+        // 
+        <div className="navbar flex-no-wrap bg-white top-0 z-10 fixed ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

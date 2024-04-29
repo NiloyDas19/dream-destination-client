@@ -7,7 +7,7 @@ const MyList = () => {
     const {loading } = useContext(AuthContext);
     const mySpots = useLoaderData();
 
-    if(loading || mySpots.length == 0){
+    if(loading){
         return (
             <div className="text-center">
                 <span className="loading loading-spinner loading-sm mx-auto"></span>

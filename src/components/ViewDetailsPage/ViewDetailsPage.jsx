@@ -21,7 +21,7 @@ const ViewDetailsPage = () => {
 
 
     return (
-        <div className='mt-20 mx-auto w-[95%]'>
+        <div className='pt-20 mx-auto w-[95%]'>
             <div className="border-2 border-gray-200 rounded-2xl p-7 space-y-8 flex flex-col">
                 <div className="flex justify-center rounded-2xl">
                     <img src={image} className="w-full rounded-2xl" alt="" />

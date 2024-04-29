@@ -13,7 +13,7 @@ import swal from 'sweetalert';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { createUserWithEmailPassword, createWithGoogle, createWithGithub, setLoading } = useContext(AuthContext);
+    const { createUserWithEmailPassword, createWithGoogle, createWithGithub, setLoading, isDark } = useContext(AuthContext);
 
     const navigate = useNavigate();
     // DocumentTitle('Register');
@@ -128,32 +128,32 @@ const Register = () => {
 
     return (
         <div className="hero min-h-screen mx-auto pt-20">
-            <div className="card w-full md:w-1/2 max-w-sm md:max-w-xl shadow-2xl bg-base-100 p-10">
+            <div className={`card w-full md:w-1/2 max-w-sm md:max-w-xl shadow-2xl  p-10 ${isDark === 'dark' ? "bg-[#28185d]" : "bg-base-100"}`}>
                 <div className="text-center mt-5">
                     <h2 className="text-2xl md:text-4xl text-blue-500 font-bold">Register Here</h2>
                 </div>
                 <form className="w-full" onSubmit={handleRegister}>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Name</span>
+                            <span className="">Name</span>
                         </label>
-                        <input type="text" placeholder="name" name="name" className="input input-bordered" required />
+                        <input type="text" placeholder="name" name="name" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="">Email</span>
                         </label>
-                        <input type="email" placeholder="email" name="email" className="input input-bordered" required />
+                        <input type="email" placeholder="email" name="email" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo URL</span>
+                            <span className="">Photo URL</span>
                         </label>
-                        <input type="text" placeholder="Photo URL" name="photoUrl" className="input input-bordered" required />
+                        <input type="text" placeholder="Photo URL" name="photoUrl" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                     </div>
                     <div className="form-control relative">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="">Password</span>
                             <span className="absolute bottom-4 right-3"
                                 onClick={() => setShowPassword(!showPassword)}>
                                 {
@@ -163,7 +163,7 @@ const Register = () => {
                                 }
                             </span>
                         </label>
-                        <input type={showPassword ? "text" : "password"} placeholder="password" name="password" className="input input-bordered" required />
+                        <input type={showPassword ? "text" : "password"} placeholder="password" name="password" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Register</button>
@@ -172,8 +172,8 @@ const Register = () => {
                 <div className="text-center flex flex-col space-y-2 mt-5">
                     <div className="border-b-2 border-orange-500"></div>
                     <button className="btn btn-outline btn-secondary w-full" onClick={handleRegisterWithGoogle}><FcGoogle></FcGoogle> Register With Google</button>
-                    <button className="btn btn-outline w-full" onClick={handleRegisterWithGithub}><FaGithub></FaGithub> Register With Github</button>
-                    <p className="text-black">Already have an account ? <span className="font-bold text-blue-600"><Link to="/login">Login Here</Link></span></p>
+                    <button className="btn btn-outline btn-warning w-full" onClick={handleRegisterWithGithub}><FaGithub></FaGithub> Register With Github</button>
+                    <p className="">Already have an account ? <span className="font-bold text-blue-600"><Link to="/login">Login Here</Link></span></p>
                 </div>
 
             </div>

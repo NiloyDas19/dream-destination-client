@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 const Footer = () => {
     const { isDark } = useContext(AuthContext);
     return (
-        <footer className={`${isDark ? "bg-[#150d32]" : "bg-base-200"} footer footer-center p-10  mt-10`}>
+        <footer className={`${isDark === 'dark' ? "bg-[#150d32]" : "bg-base-200"} footer footer-center p-10  mt-10`}>
             <aside>
                 <p className="font-bold text-2xl md:text-3xl">
                     DREAM<span className="text-blue-800">DESTINATION</span>

@@ -9,7 +9,11 @@ export const  AuthContext  = createContext(null);
 const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(localStorage.getItem('theme') || 'light');
+    
+    useEffect(() => {
+        localStorage.setItem('theme', isDark);
+      }, [isDark]);
 
 
     const provider = new GoogleAuthProvider();

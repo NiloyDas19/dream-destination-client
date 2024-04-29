@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 // import navBackground from "../../assets/background.svg";
@@ -7,6 +7,10 @@ import { AuthContext } from "../../providers/AuthProviders";
 
 const Navbar = () => {
     const { user, logOut, loading, isDark, setIsDark } = useContext(AuthContext);
+
+    useEffect(() => {
+        localStorage.setItem('theme', isDark);
+      }, [isDark]);
 
     if (loading) {
         return (
@@ -38,7 +42,7 @@ const Navbar = () => {
 
     return (
         // style={{ backgroundImage: `url(${navBackground})` }}
-        <div className={`navbar flex-no-wrap ${isDark ? "bg-[#150d32]" : "bg-white"} top-0 z-10 fixed `}>
+        <div className={`navbar flex-no-wrap ${isDark === 'dark' ? "bg-[#150d32]" : "bg-white"} top-0 z-10 fixed `}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,13 +83,13 @@ const Navbar = () => {
             </div>
             <label className="flex cursor-pointer gap-2 navbar-end md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-                <input type="checkbox" value="synthwave" className="toggle theme-controller w-12" onChange={() => setIsDark(!isDark)} />
+                <input type="checkbox" value="synthwave" className="toggle theme-controller w-12" onChange={() => { (isDark === 'dark') ? setIsDark('light') : setIsDark('dark') }} />
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </label>
             <div className="space-x-3 navbar-end hidden md:flex">
             <label className="flex cursor-pointer gap-2 navbar-end">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-                <input type="checkbox" value="synthwave" className="toggle theme-controller" onChange={() => setIsDark(!isDark)} />
+                <input type="checkbox" value="synthwave" className="toggle theme-controller" onChange={() => { (isDark === 'dark') ? setIsDark('light') : setIsDark('dark') }} />
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </label>
                 {

@@ -12,7 +12,7 @@ const UpdatePage = () => {
         event.preventDefault();
         const form = event.target;
         const tourists_spot_name = form.tourists_spot_name.value;
-        const country_Name = form.country_Name.value;
+        const country_Name = form.elements.country_Name.value;
         const total_visitors_per_year = form.total_visitors_per_year.value;
         const location = form.location.value;
         const short_description = form.short_description.value;
@@ -48,7 +48,7 @@ const UpdatePage = () => {
 
     return (
         <div className={`space-y-10 w-[90%] mx-auto pt-20`}>
-            <div className={`${isDark ? "bg-[#28185d]" : "bg-slate-50"} shadow-2xl space-y-10 rounded-2xl`}>
+            <div className={`${isDark === 'dark' ? "bg-[#28185d]" : "bg-slate-50"} shadow-2xl space-y-10 rounded-2xl`}>
                 <div className="text-center space-y-2 pt-10 px-2">
                     <h4 className="font-bold text-3xl text-purple-500">Update Tourist Spot</h4>
                 </div>
@@ -62,7 +62,7 @@ const UpdatePage = () => {
                                         <span className="font-bold">Tourists Spot Name
                                         </span>
                                     </div>
-                                    <input type="text" name="tourists_spot_name" placeholder="Enter Tourists Spot Name" defaultValue={spot.tourists_spot_name} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="text" name="tourists_spot_name" placeholder="Enter Tourists Spot Name" defaultValue={spot.tourists_spot_name} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -70,7 +70,15 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Country Name</span>
                                     </div>
-                                    <input type="text" name="country_Name" placeholder="Enter Country Name" defaultValue={spot.country_Name} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <select name="country_Name" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required>
+                                        <option selected>{spot.country_Name}</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Malaysia">Malaysia</option>
+                                        <option value="Vietnam">Vietnam</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                    </select>
                                 </label>
                             </div>
                         </div>
@@ -80,7 +88,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Total Visitors Per Year</span>
                                     </div>
-                                    <input type="number" name="total_visitors_per_year" placeholder="Example : 1000, 10000 etc." defaultValue={spot.total_visitors_per_year} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="number" name="total_visitors_per_year" placeholder="Example : 1000, 10000 etc." defaultValue={spot.total_visitors_per_year} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -88,7 +96,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Location</span>
                                     </div>
-                                    <input type="text" name="location" placeholder="Enter Location" defaultValue={spot.location} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="text" name="location" placeholder="Enter Location" defaultValue={spot.location} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -98,7 +106,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Short Description</span>
                                     </div>
-                                    <input type="text" name="short_description" placeholder="Enter Short Description" defaultValue={spot.short_description} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="text" name="short_description" placeholder="Enter Short Description" defaultValue={spot.short_description} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -106,7 +114,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Average Cost</span>
                                     </div>
-                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" defaultValue={spot.average_cost} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" defaultValue={spot.average_cost} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -117,7 +125,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className=" font-bold">Seasonality</span>
                                     </div>
-                                    <input type="text" name="seasonality" placeholder="Example : summer, winter" defaultValue={spot.seasonality} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="text" name="seasonality" placeholder="Example : summer, winter" defaultValue={spot.seasonality} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -125,7 +133,7 @@ const UpdatePage = () => {
                                     <div className="label">
                                         <span className="font-bold">Travel Time</span>
                                     </div>
-                                    <input type="text" name="travel_time" placeholder="Example : 7 days" defaultValue={spot.travel_time} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="text" name="travel_time" placeholder="Example : 7 days" defaultValue={spot.travel_time} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -135,10 +143,10 @@ const UpdatePage = () => {
                                 <div className="label">
                                     <span className="font-bold">Image</span>
                                 </div>
-                                <input type="text" name="image" placeholder="Enter Image URL" defaultValue={spot.image} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                <input type="text" name="image" placeholder="Enter Image URL" defaultValue={spot.image} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                             </label>
                             <div className="mb-10">
-                                <input type="submit" value="Update Tourist Spot" className={`${isDark ? "bg-blue-800 border-blue hover:border-black" : "bg-pink-500"} input input-bordered w-full`} />
+                                <input type="submit" value="Update Tourist Spot" className={`${isDark === 'dark' ? "bg-blue-800 border-blue hover:border-black" : "bg-pink-500"} btn input input-bordered w-full`} />
                             </div>
                         </div>
 

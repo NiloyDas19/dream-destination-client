@@ -7,7 +7,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 const Root = () => {
     const {isDark} = useContext(AuthContext);
     return (
-        <div className= {isDark ? "bg-[#1A103D] text-white" : "bg-white text-black"}>
+        <div className= {isDark === 'dark' ? "bg-[#1A103D] text-white" : "bg-white text-black"}>
             <Navbar></Navbar>
             <Outlet ></Outlet>
             <Footer></Footer>

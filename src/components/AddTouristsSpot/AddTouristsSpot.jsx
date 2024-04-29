@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -54,11 +52,8 @@ const AddTouristsSpot = () => {
 
 
     return (
-        <div className="space-y-10 w-[90%] mx-auto mt-10">
-            <div className="mt-5">
-                <Link to="/" ><i className="text-purple-800 font-semibold flex items-center gap-1"> <FaArrowLeft /> Back to home</i></Link>
-            </div>
-            <div className="bg-[#F4F3F0] space-y-10 rounded-2xl">
+        <div className="space-y-10 w-[90%] mx-auto pt-20">
+            <div className="bg-white text-black shadow-2xl space-y-10 rounded-2xl">
                 <div className="text-center space-y-2 pt-10 px-2">
                     <h4 className="font-bold text-3xl text-purple-500">Add Tourist Spot</h4>
                     <p>

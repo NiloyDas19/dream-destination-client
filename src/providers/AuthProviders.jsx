@@ -9,6 +9,8 @@ export const  AuthContext  = createContext(null);
 const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isDark, setIsDark] = useState(false);
+
 
     const provider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -77,6 +79,8 @@ const AuthProviders = ({children}) => {
         loginWithGithub,
         loading,
         setLoading,
+        isDark,
+        setIsDark
     }
 
     return (

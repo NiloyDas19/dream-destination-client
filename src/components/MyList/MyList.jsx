@@ -51,9 +51,9 @@ const MyList = () => {
 
 
     return (
-        <div className="mt-20 w-[95%] mx-auto min-h-screen overflow-x-auto">
+        <div className="pt-20 w-[95%] mx-auto min-h-screen overflow-x-auto">
             <table className="table table-auto">
-                <thead>
+                <tbody>
                     <tr className="text-center">
                         <th></th>
                         <th>Country Name</th>
@@ -63,8 +63,6 @@ const MyList = () => {
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
-                </thead>
-                <tbody>
                     {
                         mySpots.map((spot, index) => <>
                             <tr className="text-center">

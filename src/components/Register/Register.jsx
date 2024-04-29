@@ -127,7 +127,7 @@ const Register = () => {
 
 
     return (
-        <div className="hero min-h-screen mx-auto mt-10">
+        <div className="hero min-h-screen mx-auto pt-20">
             <div className="card w-full md:w-1/2 max-w-sm md:max-w-xl shadow-2xl bg-base-100 p-10">
                 <div className="text-center mt-5">
                     <h2 className="text-2xl md:text-4xl text-blue-500 font-bold">Register Here</h2>
@@ -173,7 +173,7 @@ const Register = () => {
                     <div className="border-b-2 border-orange-500"></div>
                     <button className="btn btn-outline btn-secondary w-full" onClick={handleRegisterWithGoogle}><FcGoogle></FcGoogle> Register With Google</button>
                     <button className="btn btn-outline w-full" onClick={handleRegisterWithGithub}><FaGithub></FaGithub> Register With Github</button>
-                    <p>Already have an account ? <span className="font-bold text-blue-600"><Link to="/login">Login Here</Link></span></p>
+                    <p className="text-black">Already have an account ? <span className="font-bold text-blue-600"><Link to="/login">Login Here</Link></span></p>
                 </div>
 
             </div>

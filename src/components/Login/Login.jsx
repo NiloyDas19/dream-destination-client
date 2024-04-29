@@ -131,7 +131,7 @@ const Login = () => {
                     <div className="border-b-2 border-orange-500"></div>
                     <button className="btn btn-outline btn-secondary w-full" onClick={handleLoginWithGoogle}><FcGoogle></FcGoogle> Login With Google</button>
                     <button className="btn btn-outline w-full" onClick={handleLoginWithGithub}><FaGithub></FaGithub> Login With Github</button>
-                    <p>Do not have an account ? <span className="font-bold text-red-600"><Link state={location?.state} to="/register">Register here</Link></span></p>
+                    <p className="text-black">Do not have an account ? <span className="font-bold text-red-600"><Link state={location?.state} to="/register">Register here</Link></span></p>
                 </div>
             </div>
         </div>

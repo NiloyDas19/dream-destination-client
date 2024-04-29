@@ -70,19 +70,19 @@ const Home = () => {
                     <h1 className="text-center font-bold text-3xl">Stats</h1>
                 </div>
                 <div className="flex justify-center">
-                    <div className={`${isDark ? "bg-blue-200" : "bg-white"} stats shadow`}>
+                    <div className={`${isDark ? "bg-blue-200" : "bg-white"} stats shadow text-center flex-col md:flex-row`}>
 
-                        <div className="stat place-items-center">
+                        <div className="stat">
                             <div className="stat-title">Total Tourists Spots </div>
                             <div className="stat-value">{allTouristsSpots.length}</div>
                         </div>
 
-                        <div className="stat place-items-center">
+                        <div className="stat ">
                             <div className="stat-title">Countries</div>
                             <div className="stat-value text-secondary">6</div>
                         </div>
 
-                        <div className="stat place-items-center">
+                        <div className="stat">
                             <div className="stat-title">Most Visited Spot</div>
                             <div className="stat-value">{mostVisitedSpots[0].tourists_spot_name}</div>
                         </div>

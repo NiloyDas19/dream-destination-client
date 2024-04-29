@@ -6,10 +6,10 @@ const Footer = () => {
     return (
         <footer className={`${isDark ? "bg-[#150d32]" : "bg-base-200"} footer footer-center p-10  mt-10`}>
             <aside>
-                <p className="font-bold text-3xl">
+                <p className="font-bold text-2xl md:text-3xl">
                     DREAM<span className="text-blue-800">DESTINATION</span>
                 </p>
-                <p className="text-2xl font-semibold">
+                <p className="text-xl md:text-2xl font-semibold">
                     Choose Your Ultimate Destination
                 </p>
                 <p>Copyright © 2024 - All right reserved</p>

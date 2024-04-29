@@ -51,9 +51,6 @@ const UpdatePage = () => {
             <div className="bg-[#F4F3F0] space-y-10 rounded-2xl">
                 <div className="text-center space-y-2 pt-10 px-2">
                     <h4 className="font-bold text-3xl text-purple-500">Update Tourist Spot</h4>
-                    <p>
-                        It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.
-                    </p>
                 </div>
 
                 <form className="space-y-2 flex justify-center" onSubmit={handleUpdateTouristsSpot}>

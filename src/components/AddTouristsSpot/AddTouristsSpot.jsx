@@ -57,7 +57,7 @@ const AddTouristsSpot = () => {
                 <div className="text-center space-y-2 pt-10 px-2">
                     <h4 className="font-bold text-3xl text-purple-500">Add Tourist Spot</h4>
                     <p>
-                        It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.
+                        Elevate your travel experience by contributing to our collection of extraordinary tourist spots across Southeast Asia.
                     </p>
                 </div>
 
@@ -70,7 +70,7 @@ const AddTouristsSpot = () => {
                                         <span className="label-text font-bold">User Email
                                         </span>
                                     </div>
-                                    <input type="email" name="user_email" placeholder={user?.email} className="input input-bordered w-full" required  disabled/>
+                                    <input type="email" name="user_email" placeholder={user?.email} className="input input-bordered w-full" required disabled />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -78,7 +78,7 @@ const AddTouristsSpot = () => {
                                     <div className="label">
                                         <span className="label-text font-bold">User Name</span>
                                     </div>
-                                    <input type="text" name="user_name" placeholder={user?.displayName} className="input input-bordered w-full" required  disabled/>
+                                    <input type="text" name="user_name" placeholder={user?.displayName} className="input input-bordered w-full" required disabled />
                                 </label>
                             </div>
                         </div>

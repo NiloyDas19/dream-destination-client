@@ -30,16 +30,16 @@ const ViewDetailsPage = () => {
                     <h2 className='text-2xl font-bold'>{tourists_spot_name}</h2>
                     <p>{short_description}</p>
                 </div>
-                <div className="flex-grow space-y-2">
-                    <div className='flex justify-between'>
+                <div className="flex-grow space-y-2 text-center">
+                    <div className='flex flex-col md:flex-row justify-between space-y-2'>
                         <h2 className="">Seasonality : {seasonality}</h2>
                         <p>Average Cost : {average_cost}</p>
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='flex flex-col md:flex-row justify-between space-y-2'>
                         <p>Total Visitors Per Year : {total_visitors_per_year}</p>
                         <p>Travel Time : {travel_time}</p>
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='flex flex-col md:flex-row justify-between space-y-2'>
                         <p>Location: {location}</p>
                         <p>Country Name: {country_Name}</p>
                         <p>Posted By : {user_name}</p>

@@ -4,7 +4,7 @@ import swal from "sweetalert";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const UpdatePage = () => {
-    const {user} = useContext(AuthContext);
+    const {user, isDark} = useContext(AuthContext);
     const navigate = useNavigate();
     const spot = useLoaderData();
 
@@ -47,8 +47,8 @@ const UpdatePage = () => {
     }
 
     return (
-        <div className="space-y-10 w-[90%] mx-auto mt-20">
-            <div className="bg-[#F4F3F0] space-y-10 rounded-2xl">
+        <div className={`space-y-10 w-[90%] mx-auto pt-20`}>
+            <div className={`${isDark ? "bg-[#28185d]" : "bg-slate-50"} shadow-2xl space-y-10 rounded-2xl`}>
                 <div className="text-center space-y-2 pt-10 px-2">
                     <h4 className="font-bold text-3xl text-purple-500">Update Tourist Spot</h4>
                 </div>
@@ -59,18 +59,18 @@ const UpdatePage = () => {
                             <div className="w-full">
                                 <label className="form-control w-full">
                                     <div className="label">
-                                        <span className="label-text font-bold">Tourists Spot Name
+                                        <span className="font-bold">Tourists Spot Name
                                         </span>
                                     </div>
-                                    <input type="text" name="tourists_spot_name" placeholder="Enter Tourists Spot Name" defaultValue={spot.tourists_spot_name} className="input input-bordered w-full" required />
+                                    <input type="text" name="tourists_spot_name" placeholder="Enter Tourists Spot Name" defaultValue={spot.tourists_spot_name} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
                                 <label className="form-control w-full">
                                     <div className="label">
-                                        <span className="label-text font-bold">Country Name</span>
+                                        <span className="font-bold">Country Name</span>
                                     </div>
-                                    <input type="text" name="country_Name" placeholder="Enter Country Name" defaultValue={spot.country_Name} className="input input-bordered w-full" required />
+                                    <input type="text" name="country_Name" placeholder="Enter Country Name" defaultValue={spot.country_Name} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -78,17 +78,17 @@ const UpdatePage = () => {
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Total Visitors Per Year</span>
+                                        <span className="font-bold">Total Visitors Per Year</span>
                                     </div>
-                                    <input type="number" name="total_visitors_per_year" placeholder="Example : 1000, 10000 etc." defaultValue={spot.total_visitors_per_year} className="input input-bordered w-full " required />
+                                    <input type="number" name="total_visitors_per_year" placeholder="Example : 1000, 10000 etc." defaultValue={spot.total_visitors_per_year} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Location</span>
+                                        <span className="font-bold">Location</span>
                                     </div>
-                                    <input type="text" name="location" placeholder="Enter Location" defaultValue={spot.location} className="input input-bordered w-full " required />
+                                    <input type="text" name="location" placeholder="Enter Location" defaultValue={spot.location} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -96,17 +96,17 @@ const UpdatePage = () => {
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Short Description</span>
+                                        <span className="font-bold">Short Description</span>
                                     </div>
-                                    <input type="text" name="short_description" placeholder="Enter Short Description" defaultValue={spot.short_description} className="input input-bordered w-full " required />
+                                    <input type="text" name="short_description" placeholder="Enter Short Description" defaultValue={spot.short_description} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Average Cost</span>
+                                        <span className="font-bold">Average Cost</span>
                                     </div>
-                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" defaultValue={spot.average_cost} className="input input-bordered w-full " required />
+                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" defaultValue={spot.average_cost} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -115,17 +115,17 @@ const UpdatePage = () => {
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Seasonality</span>
+                                        <span className=" font-bold">Seasonality</span>
                                     </div>
-                                    <input type="text" name="seasonality" placeholder="Example : summer, winter" defaultValue={spot.seasonality} className="input input-bordered w-full " required />
+                                    <input type="text" name="seasonality" placeholder="Example : summer, winter" defaultValue={spot.seasonality} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                             <div className="w-full">
                                 <label className="form-control w-full ">
                                     <div className="label">
-                                        <span className="label-text font-bold">Travel Time</span>
+                                        <span className="font-bold">Travel Time</span>
                                     </div>
-                                    <input type="text" name="travel_time" placeholder="Example : 7 days" defaultValue={spot.travel_time} className="input input-bordered w-full " required />
+                                    <input type="text" name="travel_time" placeholder="Example : 7 days" defaultValue={spot.travel_time} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>
@@ -133,12 +133,12 @@ const UpdatePage = () => {
                         <div className="flex flex-col gap-5">
                             <label className="w-full">
                                 <div className="label">
-                                    <span className="label-text font-bold">Image</span>
+                                    <span className="font-bold">Image</span>
                                 </div>
-                                <input type="text" name="image" placeholder="Enter Image URL" defaultValue={spot.image} className="input input-bordered w-full " required />
+                                <input type="text" name="image" placeholder="Enter Image URL" defaultValue={spot.image} className={`${isDark ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                             </label>
                             <div className="mb-10">
-                                <input type="submit" value="Update Tourist Spot" className="w-full btn bg-[#D2B48C] border-2 border-black" />
+                                <input type="submit" value="Update Tourist Spot" className={`${isDark ? "bg-blue-800 border-blue hover:border-black" : "bg-pink-500"} input input-bordered w-full`} />
                             </div>
                         </div>
 

@@ -20,7 +20,7 @@ import slide_image_4 from '../../assets/image4.jpg';
 function Banner() {
     const bannerHeading = <>
         <div className=" text-white">
-            <h2 className="font-bold text-3xl md:text-7xl">DREAM<span className="text-blue-500">DESTINATION</span></h2>
+            <h2 className="font-bold text-2xl md:text-7xl">DREAM<span className="text-blue-500">DESTINATION</span></h2>
             <p>Choose your destination</p>
         </div>
     </>

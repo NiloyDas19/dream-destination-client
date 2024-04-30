@@ -3,7 +3,7 @@
 
 # My Selected Category : Southeast Asia
 
-# Some of the features of this website are describe below 
+# Some of the features of this website are described below 
 
 - Home: The home page serves as the initial landing page for users, providing an overview of the application's features and content. It may include highlights of popular tourist spots, featured destinations.
 

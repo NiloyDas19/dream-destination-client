@@ -15,16 +15,16 @@ const AllTouristsSpot = () => {
         const operation = e.target.value;
         if (operation === "Ascending") {
             const sortedSpots = [...touristsSpot].sort((a, b) => {
-                return a.average_cost.localeCompare(b.average_cost);
+                return parseInt(a.average_cost) - parseInt(b.average_cost);
             });
             setTouristsSpot(sortedSpots);
         }
         else if (operation === "Descending") {
             const sortedSpots = [...touristsSpot].sort((a, b) => {
-                return b.average_cost.localeCompare(a.average_cost);
+                return parseInt(b.average_cost) - parseInt(a.average_cost);
             });
             setTouristsSpot(sortedSpots);
-        }
+        }        
     }
 
     return (

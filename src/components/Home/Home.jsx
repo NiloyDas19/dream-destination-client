@@ -22,7 +22,7 @@ const Home = () => {
                 console.log(data);
                 setCountries(data);
                 const sortedSpots = [...mostVisitedSpots].sort((a, b) => {
-                    return b.total_visitors_per_year.localeCompare(a.total_visitors_per_year);
+                    return parseInt(b.total_visitors_per_year) - parseInt(a.total_visitors_per_year);
                 });
                 setMostVisitedSpots(sortedSpots);
             })

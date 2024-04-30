@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../providers/AuthProviders";
+import DocumentTitle from "../../documentTitle/DocumentTitle";
 
 const UpdatePage = () => {
+    DocumentTitle('Update Page');
     const {user, isDark} = useContext(AuthContext);
     const navigate = useNavigate();
     const spot = useLoaderData();

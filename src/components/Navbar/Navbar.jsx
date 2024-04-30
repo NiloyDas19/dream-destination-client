@@ -1,8 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-// import navBackground from "../../assets/background.svg";
-// import "animate.css";
 import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
@@ -114,7 +112,7 @@ const Navbar = () => {
             </div>
             <Tooltip
                 id="my-tooltip"
-                content={user.displayName}
+                content={user?.displayName}
             />
         </div>
     );

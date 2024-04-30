@@ -6,23 +6,17 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import swal from 'sweetalert';
-// import DocumentTitle from './../../documentTitle/DocumentTitle';
-// import Aos from 'aos';
-// import 'aos/dist/aos.css';
-// import { useEffect } from 'react';
+import DocumentTitle from "../../documentTitle/DocumentTitle";
+
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { createUserWithEmailPassword, createWithGoogle, createWithGithub, setLoading, isDark } = useContext(AuthContext);
 
     const navigate = useNavigate();
-    // DocumentTitle('Register');
+    DocumentTitle('Register');
     const location = useLocation();
 
-    // useEffect(()=>{
-    //     Aos.init({duration: 2000});
-
-    // },[]);
 
     const handleRegister = (e) => {
         e.preventDefault();

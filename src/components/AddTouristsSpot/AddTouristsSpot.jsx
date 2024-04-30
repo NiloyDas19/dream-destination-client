@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import swal from "sweetalert";
 import { AuthContext } from "../../providers/AuthProviders";
+import DocumentTitle from './../../documentTitle/DocumentTitle';
 
 const AddTouristsSpot = () => {
-
+    DocumentTitle('Add Tourists Spot');
     const { user, isDark } = useContext(AuthContext);
 
 

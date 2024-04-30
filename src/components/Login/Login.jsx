@@ -3,24 +3,18 @@ import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-
 import swal from 'sweetalert';
-// import DocumentTitle from './../../documentTitle/DocumentTitle';
-// import Aos from 'aos';
-// import 'aos/dist/aos.css';
+import DocumentTitle from './../../documentTitle/DocumentTitle';
+
 
 const Login = () => {
-    // DocumentTitle('Login');
+    DocumentTitle('Login');
     const [showPassword, setShowPassword] = useState(false);
     const { loginWithEmailPassword, loginWithGoogle, loginWithGithub, setLoading, isDark } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location);
 
-    // useEffect(()=>{
-    //     Aos.init({duration: 2000});
-
-    // },[]);
 
     const handleLogin = (e) => {
         e.preventDefault();

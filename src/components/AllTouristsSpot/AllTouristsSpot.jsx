@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import TouristsSpotCard from "../TouristsSpotCard/TouristsSpotCard";
+import DocumentTitle from "../../documentTitle/DocumentTitle";
 
 const AllTouristsSpot = () => {
+    DocumentTitle('All Tourists Spot');
     const allTouristsSpots = useLoaderData();
     console.log(allTouristsSpots);
     const [touristsSpot, setTouristsSpot] = useState(allTouristsSpots);

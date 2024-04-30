@@ -4,8 +4,10 @@ import TouristsSpotCard from "../TouristsSpotCard/TouristsSpotCard";
 import { useContext, useEffect, useState } from "react";
 import CountryCard from "../CountryCard/CountryCard";
 import { AuthContext } from "../../providers/AuthProviders";
+import DocumentTitle from "../../documentTitle/DocumentTitle";
 
 const Home = () => {
+    DocumentTitle('Home');
     const allTouristsSpots = useLoaderData();
     const [countries, setCountries] = useState([]);
     const [mostVisitedSpots, setMostVisitedSpots] = useState(allTouristsSpots);

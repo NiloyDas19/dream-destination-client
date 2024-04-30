@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import swal from "sweetalert";
+import DocumentTitle from "../../documentTitle/DocumentTitle";
 
 const MyList = () => {
+    DocumentTitle('My List');
     const {loading } = useContext(AuthContext);
     const mySpots = useLoaderData();
 

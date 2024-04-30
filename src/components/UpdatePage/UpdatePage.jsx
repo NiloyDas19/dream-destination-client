@@ -27,7 +27,7 @@ const UpdatePage = () => {
 
         console.log(newTouristsSpot);
 
-        fetch(`http://localhost:5000/touristsSpot/${spot._id}`, {
+        fetch(`https://dream-destination-server-side.vercel.app/touristsSpot/${spot._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/addTouristsSpot')
+        loader: () => fetch('https://dream-destination-server-side.vercel.app/addTouristsSpot', { credentials: "include" })
       },
       {
         path: "/login",
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/all-tourists-spot",
         element: <AllTouristsSpot></AllTouristsSpot>,
-        loader: () => fetch('http://localhost:5000/addTouristsSpot')
+        loader: () => fetch('https://dream-destination-server-side.vercel.app/addTouristsSpot', { credentials: "include" })
       },
       {
         path: "/add-tourists-spot",
@@ -50,22 +50,22 @@ const router = createBrowserRouter([
       {
         path: "/my-list/:email",
         element: <PrivateRoutes><MyList></MyList></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/myList/${params.email}`)
+        loader: ({ params }) => fetch(`https://dream-destination-server-side.vercel.app/myList/${params.email}`, { credentials: "include" })
       },
       {
         path: "/view-details/:id",
         element: <PrivateRoutes><ViewDetailsPage></ViewDetailsPage></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/viewDetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://dream-destination-server-side.vercel.app/viewDetails/${params.id}`, { credentials: "include" })
       },
       {
         path: "/update-page/:id",
         element: <PrivateRoutes><UpdatePage></UpdatePage></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/viewDetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://dream-destination-server-side.vercel.app/viewDetails/${params.id}`, { credentials: "include" })
       },
       {
         path: "/specific-country/:country_Name",
         element: <ViewPageForSpecficCountry></ViewPageForSpecficCountry>,
-        loader: ({params}) => fetch(`http://localhost:5000/viewDetailsForSpecificCountry/${params.country_Name}`)
+        loader: ({ params }) => fetch(`https://dream-destination-server-side.vercel.app/viewDetailsForSpecificCountry/${params.country_Name}`, { credentials: "include" })
       }
     ]
   },

@@ -29,7 +29,7 @@ const MyList = () => {
           })
           .then((willDelete) => {
             if (willDelete) {
-              fetch(`http://localhost:5000/touristsSpot/${_id}`,{
+              fetch(`https://dream-destination-server-side.vercel.app/touristsSpot/${_id}`,{
                 method: "DELETE",
               })
               .then(res => res.json())

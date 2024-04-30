@@ -14,7 +14,7 @@ const Home = () => {
     const { isDark } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/countries')
+        fetch('https://dream-destination-server-side.vercel.app/countries',{credentials: "include"})
             .then(res => res.json())
             .then(data => {
                 console.log(data);

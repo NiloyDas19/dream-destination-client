@@ -27,7 +27,7 @@ const AddTouristsSpot = () => {
 
         console.log(newTouristsSpot);
 
-        fetch('http://localhost:5000/addTouristsSpot', {
+        fetch('https://dream-destination-server-side.vercel.app/addTouristsSpot', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -71,7 +71,7 @@ const AddTouristsSpot = () => {
                                         <span className="font-bold">User Email
                                         </span>
                                     </div>
-                                    <input type="email" name="user_email" placeholder={user?.email} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue" : "bg-slate-50"} input input-bordered w-full`} required disabled />
+                                    <input type="email" name="user_email" placeholder={user?.email} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue" : "bg-slate-50"} input input-bordered w-full`} required readOnly />
                                 </label>
                             </div>
                             <div className="w-full">
@@ -79,7 +79,7 @@ const AddTouristsSpot = () => {
                                     <div className="label">
                                         <span className="font-bold">User Name</span>
                                     </div>
-                                    <input type="text" name="user_name" placeholder={user?.displayName} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required disabled />
+                                    <input type="text" name="user_name" placeholder={user?.displayName} className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required readOnly />
                                 </label>
                             </div>
                         </div>

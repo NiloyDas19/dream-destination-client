@@ -142,7 +142,7 @@ const AddTouristsSpot = () => {
                                     <div className="label">
                                         <span className="font-bold">Average Cost</span>
                                     </div>
-                                    <input type="number" name="average_cost" placeholder="Enter Average Cost" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
+                                    <input type="number" name="average_cost" placeholder="Enter Average Cost in dollar" className={`${isDark === 'dark' ? "bg-[#351f7e] border-blue hover:border-black" : "bg-slate-50"} input input-bordered w-full`} required />
                                 </label>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ const TouristsSpotCard = ({spot}) => {
             <div className="flex-grow space-y-2">
                 <div className='flex justify-between'>
                     <h2 className="">Seasonality : {seasonality}</h2>
-                    <p>Average Cost : {average_cost}</p>
+                    <p>Average Cost : {average_cost}$</p>
                 </div>
                 <div className='flex justify-between'>
                     <p>Total Visitors Per Year : {total_visitors_per_year}</p>

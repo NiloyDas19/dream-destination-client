@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 
 const Footer = () => {
     const { isDark } = useContext(AuthContext);
@@ -12,6 +13,14 @@ const Footer = () => {
                 <p className="text-xl md:text-2xl font-semibold">
                     Choose Your Ultimate Destination
                 </p>
+                <p className="text-xl">
+                    <p>Contact With Us</p>
+                    <p className="flex justify-center items-center"><MdOutlineEmail />
+                        dream.destination@gmail.com</p>
+                    <p className="flex justify-center items-center"><MdOutlinePhone />
+                        +080014562</p>
+                </p>
+
                 <p>Copyright © 2024 - All right reserved</p>
             </aside>
             <nav>

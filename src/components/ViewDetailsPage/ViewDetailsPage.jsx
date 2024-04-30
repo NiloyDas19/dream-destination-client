@@ -37,7 +37,7 @@ const ViewDetailsPage = () => {
                     <div className="border-dashed border-t-2"></div>
                     <div className='flex flex-row justify-between space-y-2'>
                         <h2 className="">Seasonality : {seasonality}</h2>
-                        <p>Average Cost : {average_cost}</p>
+                        <p>Average Cost : {average_cost}$</p>
                     </div>
                     <div className="border-dashed border-t-2"></div>
                     <div className='flex flex-row justify-between space-y-2'>

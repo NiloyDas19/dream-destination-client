@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const CountrySpot = ({spot}) => {
-
+const CountrySpot = ({ spot }) => {
     const {
         image,
         tourists_spot_name,
@@ -12,32 +11,60 @@ const CountrySpot = ({spot}) => {
         seasonality,
         average_cost,
         _id,
-        } = spot;
+    } = spot;
 
     return (
-        <div className="border-2 border-gray-200 rounded-2xl p-7 space-y-8 flex flex-col">
-            <div className="flex justify-center rounded-2xl">
-                <img src={image}  className="w-full rounded-2xl" alt="" />
-            </div>
-            <div className="text-center font-semibold space-y-2">
-                <h2 className='text-2xl font-bold'>{tourists_spot_name}</h2>
-                <p>{short_description}</p>
-            </div>
-            <div className="flex-grow space-y-2">
-                <div className='flex justify-between'>
-                    <h2 className="">Seasonality : {seasonality}</h2>
-                    <p>Average Cost : {average_cost}$</p>
-                </div>
-                <div className='flex justify-between'>
-                    <p>location : {location}</p>
-                    <p>Country name : {country_Name}</p>
+        <div className="card card-hover group overflow-hidden">
+            {/* Image */}
+            <div className="relative h-48 overflow-hidden">
+                <img
+                    src={image}
+                    alt={tourists_spot_name}
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                />
+                <div className="absolute top-3 right-3">
+                    <span className="badge bg-white/90 backdrop-blur-sm text-neutral-700 border border-neutral-200/50">
+                        {country_Name}
+                    </span>
                 </div>
             </div>
-            <div className="space-y-4">
-                <div className="border-dashed border-t-2">
+
+            {/* Content */}
+            <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="badge-neutral">{seasonality}</span>
                 </div>
-                <div className="text-center">
-                   <Link to={`/view-details/${_id}`}><button className='btn btn-primary'>View Details</button></Link>
+
+                <h3 className="text-heading text-neutral-900 mb-1.5 group-hover:text-brand-600 transition-colors">
+                    {tourists_spot_name}
+                </h3>
+
+                <p className="text-caption text-neutral-500 mb-1 flex items-center gap-1">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    {location}
+                </p>
+
+                <p className="text-body-sm text-neutral-500 mb-4 line-clamp-2">
+                    {short_description}
+                </p>
+
+                <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
+                    <div>
+                        <p className="text-caption text-neutral-400">From</p>
+                        <p className="text-heading text-neutral-900">${average_cost}</p>
+                    </div>
+                    <Link
+                        to={`/view-details/${_id}`}
+                        className="btn-primary btn-sm gap-1.5"
+                    >
+                        View Details
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -45,7 +72,7 @@ const CountrySpot = ({spot}) => {
 };
 
 CountrySpot.propTypes = {
-    spot : PropTypes.object.isRequired,
+    spot: PropTypes.object.isRequired,
 }
 
 export default CountrySpot;

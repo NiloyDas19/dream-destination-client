@@ -1,120 +1,261 @@
-import { useContext, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProviders";
-import { Tooltip } from 'react-tooltip';
+import { useContext, useState, useEffect, useRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProviders';
 
-const Navbar = () => {
-    const { user, logOut, loading, isDark, setIsDark } = useContext(AuthContext);
+const FallbackAvatar = ({ name, size = 'w-7 h-7', textSize = 'text-caption' }) => (
+    <div className={`${size} rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0`}>
+        <span className={`text-brand-700 font-medium ${textSize}`}>
+            {name?.[0]?.toUpperCase() || 'U'}
+        </span>
+    </div>
+);
 
-    useEffect(() => {
-        localStorage.setItem('theme', isDark);
-    }, [isDark]);
+const ProfileImage = ({ src, alt, size = 'w-7 h-7', fallbackName }) => {
+    const [imgError, setImgError] = useState(false);
 
-    if (loading) {
-        return (
-            <div className="text-center">
-                <span className="loading loading-spinner loading-sm mx-auto"></span>
-                <span className="loading loading-spinner loading-md mx-auto"></span>
-                <span className="loading loading-spinner loading-lg mx-auto"></span>
-            </div>
-        );
+    if (!src || imgError) {
+        return <FallbackAvatar name={fallbackName} size={size} />;
     }
-
-    const handleLogOut = () => {
-        console.log(user);
-        logOut()
-            .then(() => {
-                console.log("Log Out Successful");
-            })
-            .catch((error) => {
-                console.log(error.message);
-            })
-    }
-
-    const navLinks = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/all-tourists-spot">All Tourists Spot</NavLink></li>
-        <li><NavLink to="/add-tourists-spot">Add Tourists Spot</NavLink></li>
-        <li><NavLink to={`/my-list/${user?.email}`}>My List</NavLink></li>
-    </>
-
 
     return (
-        // style={{ backgroundImage: `url(${navBackground})` }}
-        <div className={`navbar flex-no-wrap ${isDark === 'dark' ? "bg-[#150d32]" : "bg-white"} top-0 z-10 fixed `}>
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        <img
+            src={src}
+            alt={alt || 'User'}
+            className={`${size} rounded-full object-cover ring-1 ring-neutral-200 flex-shrink-0`}
+            onError={() => setImgError(true)}
+            referrerPolicy="no-referrer"
+        />
+    );
+};
+
+const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const profileRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 10);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (profileRef.current && !profileRef.current.contains(e.target)) {
+                setIsProfileOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const navLinks = [
+        { name: 'Home', path: '/' },
+        { name: 'All Spots', path: '/all-tourists-spot' },
+        ...(user ? [
+            { name: 'Add Spot', path: '/add-tourists-spot' },
+            { name: 'My List', path: `/my-list/${user.email}` },
+        ] : []),
+    ];
+
+    const handleLogOut = () => {
+        logOut().catch(() => {});
+        setIsProfileOpen(false);
+    };
+
+    const linkClass = ({ isActive }) =>
+        `px-3 py-2 rounded-lg text-body-sm font-medium transition-colors duration-200 ${
+            isActive
+                ? 'text-brand-800 bg-brand-50'
+                : 'text-neutral-500 hover:text-brand-800 hover:bg-brand-50/50'
+        }`;
+
+    return (
+        <nav
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-neutral-200/80 ${
+                scrolled
+                    ? 'bg-white/95 backdrop-blur-md shadow-xs'
+                    : 'bg-white/80 backdrop-blur-sm'
+            }`}
+        >
+            <div className="container-main px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16">
+                    {/* Logo */}
+                    <Link to="/" className="flex items-center gap-2.5 group" id="logo-link">
+                        <div className="w-8 h-8 bg-brand-700 rounded-lg flex items-center justify-center">
+                            <span className="text-white font-bold text-sm">D</span>
+                        </div>
+                        <span className="font-semibold text-lg text-neutral-900 tracking-tight">
+                            Dream<span className="text-brand-600">Dest</span>
+                        </span>
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-1">
+                        {navLinks.map((link) => (
+                            <NavLink
+                                key={link.path}
+                                to={link.path}
+                                className={linkClass}
+                                end={link.path === '/'}
+                            >
+                                {link.name}
+                            </NavLink>
+                        ))}
                     </div>
-                    <ul tabIndex={0} className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  ${isDark === 'dark' ? "bg-[#150d32]" : "bg-white"} rounded-box w-52 space-y-2`}>
-                        {
-                            user ?
-                                <>
-                                    <li className="space-y-2 md:hidden">
-                                        <div className="avatar" data-tooltip-id="my-tooltip">
-                                            <div className="w-8 md:w-11 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                <img src={user.photoURL ? user.photoURL : "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
-                                            </div>
+
+                    {/* User Actions */}
+                    <div className="hidden md:flex items-center gap-3">
+                        {user ? (
+                            <div className="relative" ref={profileRef}>
+                                <button
+                                    onClick={() => setIsProfileOpen(!isProfileOpen)}
+                                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-neutral-50 transition-colors duration-200"
+                                    id="profile-toggle"
+                                >
+                                    <ProfileImage
+                                        src={user.photoURL}
+                                        alt={user.displayName}
+                                        size="w-7 h-7"
+                                        fallbackName={user.displayName || user.email}
+                                    />
+                                    <span className="text-body-sm font-medium text-neutral-700">
+                                        {user.displayName || user.email?.split('@')[0]}
+                                    </span>
+                                    <svg
+                                        className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 ${
+                                            isProfileOpen ? 'rotate-180' : ''
+                                        }`}
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+
+                                {isProfileOpen && (
+                                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl border border-neutral-200 shadow-elevated animate-slide-down">
+                                        <div className="p-3 border-b border-neutral-100">
+                                            <p className="text-body-sm font-medium text-neutral-900 truncate">{user.displayName || 'User'}</p>
+                                            <p className="text-caption text-neutral-500 truncate">{user.email}</p>
                                         </div>
-                                    </li>
-                                    <li className="md:hidden" onClick={handleLogOut}><Link to="/" >Logout</Link></li>
-                                </>
-                                :
-                                <>
-                                    <li className="md:hidden"><Link to="/login">Login</Link></li>
-                                    <li className="md:hidden"><Link to="/register">Register</Link></li>
-                                </>
-                        }
-                        {
-                            navLinks
-                        }
-                    </ul>
-                </div>
-                <h2 className="text-sm md:text-2xl font-bold">DREAM<span className="text-blue-500">DESTINATION</span></h2>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {
-                        navLinks
-                    }
-                </ul>
-            </div>
-            <label className="flex cursor-pointer gap-2 navbar-end md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-                <input type="checkbox" value="synthwave" className="toggle theme-controller w-12" onChange={() => { (isDark === 'dark') ? setIsDark('light') : setIsDark('dark') }} checked={isDark === 'dark'} />
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </label>
-            <div className="space-x-3 navbar-end hidden md:flex">
-                <label className="flex cursor-pointer gap-2 navbar-end">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-                    <input type="checkbox" value="synthwave" className="toggle theme-controller" onChange={() => { (isDark === 'dark') ? setIsDark('light') : setIsDark('dark') }} checked={isDark === 'dark'}/>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </label>
-                {
-                    user ?
-                        <>
-                            <div className="flex items-center space-x-2">
-                                <div className="avatar" data-tooltip-id="my-tooltip">
-                                    <div className="w-8 md:w-11 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src={user.photoURL ? user.photoURL : "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
+                                        <div className="p-1.5">
+                                            <Link
+                                                to="/add-tourists-spot"
+                                                onClick={() => setIsProfileOpen(false)}
+                                                className="flex items-center gap-2 px-3 py-2 rounded-lg text-body-sm text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 transition-colors"
+                                            >
+                                                Add Tourist Spot
+                                            </Link>
+                                            <Link
+                                                to={`/my-list/${user.email}`}
+                                                onClick={() => setIsProfileOpen(false)}
+                                                className="flex items-center gap-2 px-3 py-2 rounded-lg text-body-sm text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 transition-colors"
+                                            >
+                                                My List
+                                            </Link>
+                                        </div>
+                                        <div className="p-1.5 border-t border-neutral-100">
+                                            <button
+                                                onClick={handleLogOut}
+                                                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-body-sm text-red-600 hover:bg-red-50 transition-colors"
+                                                id="logout-button"
+                                            >
+                                                Sign Out
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <Link to="/" ><button className="btn btn-primary" onClick={handleLogOut}>Logout</button></Link>
+                                )}
                             </div>
-                        </>
-                        :
-                        <>
-                            <Link to="/login"><button className="btn btn-primary">Login</button></Link>
-                            <Link to="/register"><button className="btn btn-primary">Register</button></Link>
-                        </>
-                }
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <Link to="/login" className="btn-ghost btn-sm" id="login-link">
+                                    Sign In
+                                </Link>
+                                <Link to="/register" className="btn-primary btn-sm" id="register-link">
+                                    Get Started
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="md:hidden p-2 rounded-lg text-neutral-600 hover:bg-neutral-50 transition-colors"
+                        id="mobile-menu-toggle"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {isMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <Tooltip
-                id="my-tooltip"
-                content={user?.displayName}
-            />
-        </div>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+                <div className="md:hidden border-t border-neutral-100 bg-white animate-slide-down">
+                    <div className="px-4 py-4 space-y-1">
+                        {navLinks.map((link) => (
+                            <NavLink
+                                key={link.path}
+                                to={link.path}
+                                onClick={() => setIsMenuOpen(false)}
+                                className={({ isActive }) =>
+                                    `block px-3 py-2.5 rounded-lg text-body-sm font-medium transition-colors ${
+                                        isActive
+                                            ? 'text-brand-800 bg-brand-50'
+                                            : 'text-neutral-500 hover:text-brand-800 hover:bg-brand-50/50'
+                                    }`
+                                }
+                                end={link.path === '/'}
+                            >
+                                {link.name}
+                            </NavLink>
+                        ))}
+
+                        <div className="pt-3 mt-3 border-t border-neutral-100">
+                            {user ? (
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-3 px-3 py-2">
+                                        <ProfileImage
+                                            src={user.photoURL}
+                                            alt={user.displayName}
+                                            size="w-8 h-8"
+                                            fallbackName={user.displayName || user.email}
+                                        />
+                                        <div className="min-w-0">
+                                            <p className="text-body-sm font-medium text-neutral-900 truncate">{user.displayName || 'User'}</p>
+                                            <p className="text-caption text-neutral-500 truncate">{user.email}</p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={handleLogOut}
+                                        className="w-full px-3 py-2.5 rounded-lg text-body-sm text-red-600 hover:bg-red-50 transition-colors text-left"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="space-y-2">
+                                    <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block w-full btn-secondary text-center">
+                                        Sign In
+                                    </Link>
+                                    <Link to="/register" onClick={() => setIsMenuOpen(false)} className="block w-full btn-primary text-center">
+                                        Get Started
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </nav>
     );
 };
 

@@ -50,4 +50,3 @@ The project is built using the following technologies:
 *   **Authentication:** Firebase Auth
 *   **Backend & Database:** Node.js, Express, MongoDB (MERN Stack)
 *   **Alerts & Notifications:** SweetAlert & React Toastify
-*   **Deployment:** Vercel

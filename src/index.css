@@ -2,4 +2,212 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
 
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-neutral-900 bg-white;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-200 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-300;
+  }
+}
+
+@layer components {
+  /* ─── Buttons ───────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+           px-5 py-2.5 rounded-lg
+           bg-brand-700 text-white text-body-sm font-medium
+           hover:bg-brand-800
+           active:bg-brand-900
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center
+           px-5 py-2.5 rounded-lg
+           bg-white text-neutral-900 text-body-sm font-medium
+           border border-neutral-200
+           hover:bg-brand-50 hover:border-brand-200 hover:text-brand-800
+           active:bg-brand-100
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+
+  .btn-brand {
+    @apply inline-flex items-center justify-center
+           px-5 py-2.5 rounded-lg
+           bg-brand-600 text-white text-body-sm font-medium
+           hover:bg-brand-700
+           active:bg-brand-800
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center
+           px-5 py-2.5 rounded-lg
+           bg-transparent text-neutral-600 text-body-sm font-medium
+           hover:bg-brand-50 hover:text-brand-800
+           active:bg-brand-100
+           transition-colors duration-200;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center
+           px-5 py-2.5 rounded-lg
+           bg-red-600 text-white text-body-sm font-medium
+           hover:bg-red-700
+           active:bg-red-800
+           transition-colors duration-200;
+  }
+
+  .btn-lg {
+    @apply px-7 py-3.5 text-body font-semibold rounded-xl;
+  }
+
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-caption rounded-md;
+  }
+
+  /* ─── Inputs ────────────────────────────────────────── */
+  .input-field {
+    @apply w-full px-3.5 py-2.5 rounded-lg text-body-sm
+           bg-white border border-neutral-200
+           text-neutral-900 placeholder-neutral-400
+           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10
+           transition-all duration-200 outline-none;
+  }
+
+  /* ─── Cards ─────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-xl border border-neutral-200/80
+           shadow-card transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5 hover:border-brand-200;
+  }
+
+  .card-interactive {
+    @apply card card-hover cursor-pointer;
+  }
+
+  /* ─── Labels / Badges ───────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1
+           px-2.5 py-0.5 rounded-full
+           text-caption font-medium;
+  }
+
+  .badge-brand {
+    @apply badge bg-brand-50 text-brand-700;
+  }
+
+  .badge-neutral {
+    @apply badge bg-sage-100 text-sage-700;
+  }
+
+  /* ─── Section Layout ────────────────────────────────── */
+  .section {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-header {
+    @apply text-center max-w-2xl mx-auto mb-14;
+  }
+
+  .section-title {
+    @apply font-display text-display-md text-neutral-900 mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-body-lg text-neutral-500;
+  }
+
+  .container-main {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* ─── Dividers ──────────────────────────────────────── */
+  .divider {
+    @apply border-t border-neutral-200;
+  }
+
+  .divider-subtle {
+    @apply border-t border-neutral-100;
+  }
+
+  /* ─── Nature-themed decorative utilities ─────────── */
+  .leaf-accent {
+    @apply text-brand-600;
+  }
+
+  .nature-bg {
+    @apply bg-gradient-to-b from-brand-50/50 via-white to-white;
+  }
+
+  /* ─── Animations ─────────────────────────────────────── */
+  @keyframes kenBurns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+
+  .animate-ken-burns {
+    animation: kenBurns 25s ease-in-out infinite alternate;
+  }
+
+  /* ─── SweetAlert Overrides ───────────────────────────── */
+  .swal-modal {
+    @apply rounded-2xl border border-neutral-100 shadow-2xl font-sans;
+  }
+  .swal-title {
+    @apply font-display text-2xl text-neutral-900 mb-2;
+  }
+  .swal-text {
+    @apply text-body text-neutral-500 text-center;
+  }
+  .swal-button {
+    @apply rounded-xl px-5 py-2.5 font-medium text-sm transition-all outline-none;
+  }
+  .swal-button:focus {
+    @apply ring-2 ring-offset-2 ring-brand-500 outline-none !important;
+  }
+  .swal-button--cancel {
+    @apply bg-neutral-100 text-neutral-700 hover:bg-neutral-200 !important;
+  }
+  .swal-button--danger {
+    @apply bg-red-600 text-white hover:bg-red-700 shadow-sm !important;
+  }
+}

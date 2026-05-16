@@ -1,45 +1,548 @@
-#app {
-    height: 100%;
-}
+/* Hero / Banner Styles */
 
-html,
-body {
+.hero-section {
     position: relative;
-    height: 100%;
-}
-
-body {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 0;
-}
-
-.swiper {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0fdf4 0%, #f6f7f4 30%, #ffffff 100%);
 }
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
+/* Subtle leaf pattern */
+.hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 2px 2px, rgba(22, 163, 74, 0.06) 1px, transparent 0);
+    background-size: 48px 48px;
+    z-index: 1;
+}
 
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
+/* Soft organic blobs */
+.hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 1;
+}
+
+.hero-blob-1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(187, 247, 208, 0.5);
+    top: -150px;
+    left: -100px;
+    animation: blobFloat1 18s ease-in-out infinite;
+}
+
+.hero-blob-2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(220, 252, 231, 0.6);
+    bottom: -100px;
+    right: -50px;
+    animation: blobFloat2 22s ease-in-out infinite;
+}
+
+.hero-blob-3 {
+    width: 300px;
+    height: 300px;
+    background: rgba(234, 237, 228, 0.5);
+    top: 50%;
+    left: 40%;
+    animation: blobFloat3 15s ease-in-out infinite;
+}
+
+@keyframes blobFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, 20px) scale(1.05); }
+    66% { transform: translate(-20px, 10px) scale(0.95); }
+}
+
+@keyframes blobFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, -20px) scale(1.08); }
+}
+
+@keyframes blobFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -30px) scale(1.1); }
+}
+
+/* Content Layout */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
     align-items: center;
 }
 
-.swiper-slide img {
-    display: block;
+/* Left Side — Text */
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #bbf7d0;
+    background: rgba(240, 253, 244, 0.8);
+    color: #15803d;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+    letter-spacing: 0.02em;
+}
+
+.hero-eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse-dot 2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 700;
+    color: #0a0a0a;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+}
+
+.hero-title-accent {
+    color: #16a34a;
+    font-style: italic;
+    position: relative;
+}
+
+.hero-title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #22c55e, #86efac);
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+    color: #737373;
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.7;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.hero-btn-primary {
+    padding: 0.875rem 2rem;
+    background: #15803d;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 14px rgba(21, 128, 61, 0.25);
+}
+
+.hero-btn-primary:hover {
+    background: #166534;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(21, 128, 61, 0.3);
+}
+
+.hero-btn-secondary {
+    padding: 0.875rem 2rem;
+    background: white;
+    color: #15803d;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    border: 1.5px solid #bbf7d0;
+    transition: all 0.2s ease;
+    letter-spacing: -0.01em;
+}
+
+.hero-btn-secondary:hover {
+    background: #f0fdf4;
+    border-color: #86efac;
+    transform: translateY(-2px);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.hero-stat-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0a0a0a;
+    letter-spacing: -0.02em;
+}
+
+.hero-stat-label {
+    font-size: 0.8125rem;
+    color: #a3a3a3;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════ */
+/* Right Side — Retro Photo Frame Stack       */
+/* ═══════════════════════════════════════════ */
+
+.hero-stack {
+    position: relative;
+    height: 520px;
+    perspective: 1400px;
+    /* Extra space for rotated corners to show */
+    padding: 20px;
+}
+
+/* Each card in the stack — retro photo frame */
+.hero-stack-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    /* Thick white photo border */
+    background: white;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.hero-stack-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    border-radius: 6px;
 }
 
-.swiper {
-    margin-left: auto;
-    margin-right: auto;
+/* Remove the old thin border pseudo-element */
+.hero-stack-card::before {
+    content: none;
+}
+
+/* Bottom gradient overlay for label — sits on top of image */
+.hero-stack-card::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    height: 45%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    z-index: 3;
+    pointer-events: none;
+    border-radius: 0 0 6px 6px;
+}
+
+/* ── Retro Stack Positions ── */
+
+/* Card behind (back-2): rotated left, corners visible */
+.hero-stack-card[data-pos="back-2"] {
+    transform: rotate(-5deg) translateY(-8px) scale(0.95);
+    opacity: 0.55;
+    z-index: 1;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Card behind (back-1): rotated right, corners visible */
+.hero-stack-card[data-pos="back-1"] {
+    transform: rotate(3.5deg) translateY(-4px) scale(0.97);
+    opacity: 0.75;
+    z-index: 2;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+/* Active front card — straight, full size */
+.hero-stack-card[data-pos="front"] {
+    transform: rotate(0deg) translateY(0) scale(1);
+    opacity: 1;
+    z-index: 4;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Card exiting — swings away */
+.hero-stack-card[data-pos="exit"] {
+    transform: rotate(8deg) translateY(-60px) translateX(30px) scale(0.9);
+    opacity: 0;
+    z-index: 5;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+/* Card waiting (hidden below stack) */
+.hero-stack-card[data-pos="hidden"] {
+    transform: rotate(-3deg) translateY(20px) scale(0.92);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Slide label — sits inside the photo area */
+.hero-stack-label {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.75rem;
+    z-index: 4;
+    color: white;
+    transition: opacity 0.4s ease 0.2s;
+}
+
+.hero-stack-card[data-pos="front"] .hero-stack-label {
+    opacity: 1;
+}
+
+.hero-stack-card:not([data-pos="front"]) .hero-stack-label {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.hero-stack-label h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.01em;
+}
+
+.hero-stack-label p {
+    font-size: 0.8125rem;
+    opacity: 0.85;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+/* Location badge — floats on the stack */
+.hero-stack-badge {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 6;
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #15803d;
+    border: 1px solid rgba(187, 247, 208, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Decorative corners */
+.hero-stack-decor-1 {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 130px;
+    height: 130px;
+    border: 2px solid #bbf7d0;
+    border-radius: 1.25rem;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+.hero-stack-decor-2 {
+    position: absolute;
+    bottom: -14px;
+    left: -14px;
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border-radius: 1rem;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.hero-stack-decor-3 {
+    position: absolute;
+    bottom: 40px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    background: #22c55e;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* Indicators */
+.hero-indicators {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 5;
+}
+
+.hero-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d4d4d4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.hero-indicator.active {
+    background: #16a34a;
+    width: 28px;
+    border-radius: 4px;
+}
+
+/* Leaf decoration */
+.hero-leaf {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.15;
+}
+
+.hero-leaf-1 {
+    top: 15%;
+    right: 5%;
+    width: 60px;
+    animation: leafFloat 8s ease-in-out infinite;
+}
+
+.hero-leaf-2 {
+    bottom: 20%;
+    left: 3%;
+    width: 45px;
+    animation: leafFloat 10s ease-in-out infinite reverse;
+}
+
+@keyframes leafFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(8deg); }
+}
+
+/* ═══════════════════════════════════ */
+/* Responsive                          */
+/* ═══════════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .hero-section {
+        min-height: auto;
+    }
+
+    .hero-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 0;
+        text-align: center;
+        padding-top: 7rem;
+        padding-bottom: 4rem;
+    }
+
+    .hero-text {
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    /* Hide the photo stack on medium and small devices */
+    .hero-stack {
+        display: none;
+    }
+
+    .hero-stack-decor-1,
+    .hero-stack-decor-2,
+    .hero-stack-decor-3 {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+    }
+
+    .hero-stat-number {
+        font-size: 1.25rem;
+    }
 }
